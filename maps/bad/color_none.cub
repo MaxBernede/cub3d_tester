@@ -1,7 +1,7 @@
-NO textures/test/north.png
-SO textures/test/south.png
-WE textures/test/west.png
-EA textures/test/east.png
+NO textures/wood.png
+SO textures/wood.png
+WE textures/wood.png
+EA textures/wood.png
 
 11111
 10001
