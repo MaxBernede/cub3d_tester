@@ -8,8 +8,7 @@ NC='\033[0m'
 TIMEOUT=0.5
 
 run_test_print() {
-    ./cub3D "$1" > /dev/null 2> /dev/null &
-    #./cub3D "$1" &
+    ./cub3[Dd] "$1" &
     command_pid=$!
     sleep $TIMEOUT
 
@@ -23,8 +22,7 @@ run_test_print() {
 }
 
 run_test() {
-    ./cub3D "$1" > /dev/null 2> /dev/null &
-    #./cub3D "$1" &
+    ./cub3[Dd] "$1" > /dev/null 2> /dev/null &
     command_pid=$!
     sleep $TIMEOUT
 
@@ -61,14 +59,23 @@ run_tests() {
     echo -e "${BLUE}START $label TESTS${NC}"
     for file in $path/*.cub
     do
-        run_test "$file"
+        case $print in
+            1)
+                run_test_print "$file"
+                ;;
+            2 | *)
+                run_test "$file"
+                ;;
+        esac
         print_result "$file" $?
     done
 }
 
-chmod 766 textures/no_rights.png
-chmod 766 maps/bad/forbidden.cub
+rm cub3[Dd]
+cp ../cub3[Dd] ./
 
+chmod 300 textures/no_rights.png
+chmod 300 maps/bad/forbidden.cub
 
 echo -e "Do you want to see your prints from cub3d?:"
 echo -e "(it can help to see Sefgaults or free errors)"
@@ -84,16 +91,19 @@ read -p "Enter your choice (1/2/3): " choice
 
 case $choice in
     1)
-        run_tests "maps/bad" "BAD" print
-        run_tests "maps/good" "GOOD" print
+        run_tests "maps/bad" "BAD" "$print"
+        run_tests "maps/good" "GOOD" "$print"
         ;;
     2)
-        run_tests "maps/bad" "BAD" print
+        run_tests "maps/bad" "BAD" "$print"
         ;;
     3)
-        run_tests "maps/good" "GOOD" print
+        run_tests "maps/good" "GOOD" "$print"
         ;;
     *)
         echo -e "${RED}Invalid choice${NC}"
         ;;
 esac
+
+chmod 777 textures/no_rights.png
+chmod 777 maps/bad/forbidden.cub
