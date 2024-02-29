@@ -5,7 +5,7 @@ Some maps in the bad or good folder could be accepted based on your comprehensio
 ### I just made this basic tester, feel free to improve it
 
 ### How to run the tester :
-Go into your cub3d folder
-git clone this project
-cd into this folder
-./tester.sh
+#### Go into your cub3d folder
+#### git clone this project
+#### cd into this folder
+#### ./tester.sh
