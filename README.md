@@ -7,5 +7,7 @@ Some maps in the bad or good folder could be accepted based on your comprehensio
 ### How to run the tester :
 #### Go into your cub3d folder
 #### git clone this project
+#### Make your project
 #### cd into this folder
 #### ./tester.sh
+my tester will take the cub3d exec from ../
